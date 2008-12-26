@@ -1,0 +1,19 @@
+---
+name: constant-boolean
+version: 0.01
+author:
+  - 'Piotr Roszatycki <dexter@debian.org>'
+abstract: Define TRUE and FALSE constants.
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  perl: 5.006
+provides:
+  constant::boolean:
+    file: lib/constant/boolean.pm
+    version: 0.01
+generated_by: Module::Build version 0.280801
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
