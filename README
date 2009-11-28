@@ -18,6 +18,8 @@ SYNOPSIS
         return FALSE;
       };
 
+      no constant::boolean;
+
 DESCRIPTION
     Defines `TRUE' and `FALSE' constants in caller's namespace. You could
     use simple values like empty string or zero for false, or any non-empty
@@ -34,11 +36,14 @@ DESCRIPTION
     Test::Pod::Coverage, so it is more convenient to use this module than to
     define `TRUE' and `FALSE' constants by yourself.
 
+    The constants can be removed from class API with `no constant::boolean'
+    pragma or some universal tool like namespace::clean.
+
 AUTHOR
-    Piotr Roszatycki <dexter@debian.org>
+    Piotr Roszatycki <dexter@cpan.org>
 
 LICENSE
-    Copyright 2008 by Piotr Roszatycki <dexter@debian.org>.
+    Copyright 2008, 2009 by Piotr Roszatycki <dexter@cpan.org>.
 
     This program is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.

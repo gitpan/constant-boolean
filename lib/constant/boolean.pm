@@ -24,6 +24,8 @@ constant::boolean - Define TRUE and FALSE constants.
     return FALSE;
   };
 
+  no constant::boolean;
+
 =head1 DESCRIPTION
 
 Defines C<TRUE> and C<FALSE> constants in caller's namespace.  You could use
@@ -41,15 +43,19 @@ The constants exported by C<constant::boolean> are not reported by
 L<Test::Pod::Coverage>, so it is more convenient to use this module than to
 define C<TRUE> and C<FALSE> constants by yourself.
 
+The constants can be removed from class API with C<no constant::boolean>
+pragma or some universal tool like L<namespace::clean>.
+
 =for readme stop
 
 =cut
 
 use 5.006;
+
 use strict;
 use warnings;
 
-our $VERSION = 0.01;
+our $VERSION = '0.02';
 
 
 sub import {
@@ -64,20 +70,33 @@ sub import {
 };
 
 
+sub unimport {
+    require Symbol::Util;
+
+    my $caller = caller;
+    Symbol::Util::delete_sub("${caller}::$_") foreach qw( TRUE FALSE );
+
+    return 1;
+};
+
+
 1;
 
 
-__END__
+=head1 BUGS
+
+If you find the bug or want to implement new features, please report it at
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=constant-boolean>
 
 =for readme continue
 
 =head1 AUTHOR
 
-Piotr Roszatycki E<lt>dexter@debian.orgE<gt>
+Piotr Roszatycki <dexter@cpan.org>
 
 =head1 LICENSE
 
-Copyright 2008 by Piotr Roszatycki E<lt>dexter@debian.orgE<gt>.
+Copyright 2008, 2009 by Piotr Roszatycki <dexter@cpan.org>.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
